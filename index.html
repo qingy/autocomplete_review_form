@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Submit a Review</title>
+
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/autocomplete.css">
+	<link rel="stylesheet" href="css/popup.css">
+
+	<!-- JAVASCRIPTS -->
+	<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+
+	<script type="text/javascript" src="js/autocomplete/jquery.min.js"></script>
+	<script type="text/javascript" src="js/autocomplete/jquery.autocomplete.js"></script>
+	<script type="text/javascript" src="js/autocomplete/foxycomplete.js"></script>
+	<script type="text/javascript" src="js/autocomplete/data.js"></script>
+
+	<script type="text/javascript" src="js/validation/jquery.validate.js"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+		  $(window).keydown(function(event){
+		    if(event.keyCode == 13) {
+		      event.preventDefault();
+		      return false;
+		    }
+		  });
+		});
+	</script>
+
+</head>
+
+<body>
+<div class="wrapper">
+
+	<!-- multistep form -->
+	<form id="msform" name="msform" action="database_engine.php" method="post">
+		<!-- progressbar -->
+		<ul id="progressbar">
+			<li class="active">Basic Info</li>
+			<li>Rep Search</li>
+			<li>Post Review</li>
+		</ul>
+
+		<!-- fieldsets -->
+		<fieldset>
+			<h2 class="fs-title">Submit a Review</h2>
+
+			<h3 class="fs-subtitle">Please enter the following info to confirm you are a real customer.</h3>
+			<input type="text" name="name" placeholder="Full Name" />
+			<input type="text" name="email" placeholder="Email" />
+			<input type="text" id="validate" name="validate" placeholder="Validate: enter our name as 1 word" />
+			<input type="button" name="next" class="next action-button" value="Next" id="btn_validate" />
+		</fieldset>
+
+		<fieldset>
+			<h2 class="fs-title">Choose Your Customer Service Rep</h2>
+
+			<h3 class="fs-subtitle">Please enter the name of your technician.</h3>
+		    <input type="text" name="s" id="s" placeholder="Search for a Customer Service Rep" title="Search" autocomplete="off" class="ac_input" />
+		    <!--<input type="button" name="submitSearch" id="submitSearch" value="Search" />-->
+			<input type="button" name="previous" class="previous action-button" value="Previous" />
+			<input type="button" name="next" class="next action-button" value="Next" />
+		</fieldset>
+
+		<fieldset>
+			<h2 class="fs-title">Submit a Review</h2>
+			<h3 class="fs-subtitle">Thank you! Please help the professional that helped you get recognized!</h3>
+			<p>Please take a few minutes and write a review about your experience with <span style="white-space: nowrap;">Company Name</span> and the professional that helped you. By letting everyone know your experience with our professionals, you help other people who are looking for the same product or service make a more informed decision. Please select from the review communities listed:</p><br />
+
+			<a href="#popup_yelp" class="social_btn"><img src="images/yelp.png" width="32px" height="32px" alt="Yelp" /> &nbsp;&nbsp; Yelp &nbsp;&nbsp;&nbsp; <span style="font-size: 10px;">If you have a Yelp account</span></a>
+			&nbsp;&nbsp;&nbsp;
+			<a href="#popup_google" class="social_btn"><img src="images/google.png" width="32px" height="32px" alt="Google" /> &nbsp;&nbsp; Google &nbsp;&nbsp; <span style="font-size: 10px;">No account necessary</span></a>
+			<br />
+			<input type="button" name="previous" class="previous action-button" value="Previous" />
+			<input type="button" name="next" class="next action-button" value="No, Thanks" />
+		</fieldset>
+
+		<fieldset>
+			<h2 class="fs-title">No Problem, please provide your rating below.</h2>
+			<h3 class="fs-subtitle">No account required</h3>
+			<select name="rating">
+				<!--<option value="">--Select a Rating--</option>-->
+				<option value="5/5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</option>
+				<option value="4/5 stars">&#9733;&#9733;&#9733;&#9733;</option>
+				<option value="3/5 stars">&#9733;&#9733;&#9733;</option>
+				<option value="2/5 stars">&#9733;&#9733;</option>
+				<option value="1/5 stars">&#9733;</option>
+			</select><label id="dropdown_arrow"></label>
+
+			<input type="button" name="previous" class="previous action-button" value="Previous" />
+
+			<input type="hidden" id="v" name="v" value="company_name" />
+			<input type="submit" name="submit" class="submit action-button" value="Submit!" />
+		</fieldset>
+	</form>
+
+	<div id="popup_yelp" class="overlay">
+		<div class="popup">
+			<div class="popup_header">
+				<h4>Post Your Review with <span class="red"><strong>Yelp</strong></span></h4>
+			</div><!--/.popup_header-->
+			<div class="content">
+				<p>On our Yelp page, look for the <strong>Write a Review</strong> button to post your review.</p>
+				<img src="images/yelp/step_1.jpg" width="310px" height="75px" alt="Yelp" class="social_step" />
+				<p>If you are not logged into your Yelp account, you will be asked to log in before posting your review.</p>
+				<img src="images/yelp/step_2.jpg" width="310px" height="75px" alt="Yelp" class="social_step" />
+				<p><em>When posting your review, please use the name of your service professional and detail when describing your experience.</em></p>
+				<a class="social_continue" href="#" target="_blank">Continue to Yelp</a>
+				<a class="close_small" href="#">Go Back</a>
+			</div><!--/.content-->
+		</div><!--/.popup-->
+	</div><!--/#popup_yelp .overlay-->
+
+	<div id="popup_google" class="overlay">
+		<div class="popup">
+			<div class="popup_header">
+				<h4>Post Your Review with <span class="red"><strong>Google</strong></span></h4>
+			</div><!--/.popup_header-->
+			<div class="content">
+				<p>The following link will open up our Google page with a <strong>Write a Review</strong> pop-up.</p>
+				<br />
+				<p>If you are not logged into your Google account, you will be asked to log in before posting your review.</p>
+				<br />
+				<p><em>When posting your review, use the name of your service professional and detail when describing your experience.</em></p>
+				<a class="social_continue" href="#" target="_blank">Continue to Google</a>
+				<a class="close_small" href="#">Go Back</a>
+			</div><!--/.content-->
+		</div><!--/.popup-->
+	</div><!--/#popup_google .overlay-->
+
+	<script type="text/javascript" src="js/multistep/jquery.easing.min.js"></script>
+	<script type="text/javascript" src="js/multistep/steps.js"></script>
+
+</div> <!-- /.wrapper -->
+
+</body>
+</html>
